@@ -1,0 +1,10 @@
+#!/bin/bash
+cd "${0%/*}" || exit 1
+
+rm -rf constant/polyMesh
+rm -rf constant/extendedFeatureEdgeMesh
+rm -f 0/cellLevel
+rm -f 0/pointLevel
+rm -f *.foam
+rm -f log.*
+rm -rf processor*

@@ -1,0 +1,31 @@
+# OpenFOAM generated mesh
+constant/polyMesh/
+constant/extendedFeatureEdgeMesh/
+
+# snappyHexMesh generated refinement fields
+0/cellLevel
+0/pointLevel
+
+# Parallel decomposition
+processor*/
+
+# OpenFOAM post-processing
+postProcessing/
+
+# Simulation time directories
+[1-9]*
+[1-9][0-9]*
+[1-9][0-9][0-9]*
+[1-9][0-9][0-9][0-9]*
+
+# OpenFOAM ParaView marker files
+*.foam
+
+# Logs
+log.*
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
