@@ -1,0 +1,17 @@
+#!/bin/bash
+cd "${0%/*}" || exit 1
+echo "============================================================"
+echo "  Level 1 — CPU mode (MPI rank 8, simpleFoam, 5k iters)"
+echo "============================================================"
+if [ ! -d "constant/polyMesh" ] || [ ! -f "constant/polyMesh/points" ]; then
+    echo "ERROR: No mesh found. Run ./allMesh first."
+    exit 1
+fi
+rm -f 0/cellLevel 0/pointLevel
+sed -i 's/numberOfSubdomains.*/numberOfSubdomains  8;/' system/decomposeParDict
+decomposePar -force > log.decomposePar 2>&1
+mpirun -np 8 simpleFoam -parallel 2>&1 | tee log.simpleFoam
+reconstructPar -latestTime > log.reconstructPar 2>&1
+echo "============================================================"
+echo "  Level 1 — Complete"
+echo "============================================================"

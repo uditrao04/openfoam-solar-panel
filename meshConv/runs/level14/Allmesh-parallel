@@ -1,0 +1,15 @@
+#!/bin/bash
+#----------------------------------*-sh-*--------------------------------------
+# =========                 |                                                 |
+# \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+#  \\    /   O peration     | Version:  v2412                                 |
+#   \\  /    A nd           | Website:  www.openfoam.com                      |
+#    \\/     M anipulation  |                                                 |
+#------------------------------------------------------------------------------
+
+// DOESN'T WORK
+
+blockMesh | tee log.blockMesh
+surfaceFeatureExtract | tee log.surfaceFeatureExtract
+decomposePar -force | tee log.decomposePar
+mpirun -np 8 snappyHexMesh -parallel -overwrite > log.snappyHexMesh

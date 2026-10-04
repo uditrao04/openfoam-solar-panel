@@ -1,6 +1,0 @@
-// DOESN'T WORK
-
-blockMesh | tee log.blockMesh
-surfaceFeatureExtract | tee log.surfaceFeatureExtract
-decomposePar -force | tee log.decomposePar
-mpirun -np 8 snappyHexMesh -parallel -overwrite > log.snappyHexMesh 

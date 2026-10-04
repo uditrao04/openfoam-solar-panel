@@ -1,0 +1,13 @@
+#!/bin/bash
+cd "${0%/*}" || exit 1
+echo "=== Meshing Level 6 ==="
+sed -i 's/numberOfSubdomains.*/numberOfSubdomains  8;/' system/decomposeParDict
+blockMesh > log.blockMesh 2>&1
+decomposePar -force > log.decomposePar 2>&1
+mpirun -np 8 snappyHexMesh -parallel -overwrite > log.snappyHexMesh 2>&1
+reconstructParMesh -constant > log.reconstructParMesh 2>&1
+rm -rf processor*
+rm -f 0/cellLevel 0/pointLevel
+checkMesh > log.checkMesh 2>&1
+NCELLS=$(grep -oP 'cells:\s*\K[0-9]+' log.checkMesh | head -1)
+echo "=== Level 6 meshing complete: ${NCELLS} cells ==="

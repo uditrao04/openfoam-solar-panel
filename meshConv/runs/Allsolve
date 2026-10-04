@@ -1,0 +1,39 @@
+#!/bin/bash
+#----------------------------------*-sh-*--------------------------------------
+# =========                 |                                                 |
+# \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+#  \    /   O peration     | Version:  v2412                                 |
+#   \  /    A nd           | Website:  www.openfoam.com                      |
+#    \/     M anipulation  |                                                 |
+#------------------------------------------------------------------------------
+
+cd "${0%/*}" || exit 1
+echo "======================================================================"
+echo "  Starting AllSolve (Check Mesh + Run Solver) for Levels 0 to 14"
+echo "======================================================================"
+for case_dir in level0 level1 level2 level3 level4 level5 level6 level7 level8 level9 level10 level11 level12 level13 level14; do
+    if [ -d "$case_dir" ]; then
+        echo ""
+        echo ">>> Processing $case_dir..."
+        (
+            cd "$case_dir" || exit 1
+            if [ -f "./allsolve" ]; then
+                ./allsolve
+            elif [ -f "./Allsolve" ]; then
+                ./Allsolve
+            else
+                if [ ! -d "constant/polyMesh" ] || [ ! -f "constant/polyMesh/points" ]; then
+                    echo "  No mesh found in $case_dir. Running meshing..."
+                    if [ -f "./allMesh" ]; then ./allMesh; elif [ -f "./Allmesh" ]; then ./Allmesh; fi
+                else
+                    echo "  Mesh already exists in $case_dir. Skipping meshing."
+                fi
+                if [ -f "./allrun" ]; then ./allrun; elif [ -f "./Allrun" ]; then ./Allrun; fi
+            fi
+        )
+        echo ">>> $case_dir completed."
+    fi
+done
+echo "======================================================================"
+echo "  AllSolve Execution Completed for All 15 Levels!"
+echo "======================================================================"

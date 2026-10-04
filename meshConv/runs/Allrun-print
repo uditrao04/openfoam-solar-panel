@@ -1,0 +1,31 @@
+#!/bin/bash
+#----------------------------------*-sh-*--------------------------------------
+# =========                 |                                                 |
+# \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+#  \\    /   O peration     | Version:  v2412                                 |
+#   \\  /    A nd           | Website:  www.openfoam.com                      |
+#    \\/     M anipulation  |                                                 |
+#------------------------------------------------------------------------------
+
+cd "${0%/*}" || exit 1
+echo "======================================================================"
+echo "  Starting CFD Solver Execution (Console Output Mode - Levels 1-10)"
+echo "======================================================================"
+for case_dir in  level0 level1 level2 level3 level4 level5 level6 level7 level8 level9; do
+    if [ -d "$case_dir" ]; then
+        echo ""
+        echo ">>> Running Case Level $case_dir..."
+        (
+            cd "$case_dir" || exit 1
+            if [ ! -d "constant/polyMesh" ]; then
+                echo "  No mesh found in Level $case_dir. Running Allmesh-print first..."
+                ./Allmesh-print
+            fi
+            ./Allrun-print
+        )
+        echo ">>> Level $case_dir solver run finished."
+    fi
+done
+echo "======================================================================"
+echo "  All 8 Mesh Convergence Solver Runs Completed!"
+echo "======================================================================"

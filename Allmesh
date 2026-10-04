@@ -1,2 +1,0 @@
-blockMesh | tee log.blockMesh
-snappyHexMesh -overwrite | tee log.snappyHexMesh

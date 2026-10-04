@@ -1,0 +1,98 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+11
+(
+    inlet
+    {
+        type            patch;
+        nFaces          392;
+        startFace       1408253;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          392;
+        startFace       1408645;
+    }
+    bottom
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          6110;
+        startFace       1409037;
+    }
+    walls
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          2352;
+        startFace       1415147;
+    }
+    topSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          17108;
+        startFace       1417499;
+    }
+    bottomSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          17276;
+        startFace       1434607;
+    }
+    frontSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          940;
+        startFace       1451883;
+    }
+    rearSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          940;
+        startFace       1452823;
+    }
+    leftSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          440;
+        startFace       1453763;
+    }
+    rightSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          440;
+        startFace       1454203;
+    }
+    supportSP
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          1088;
+        startFace       1454643;
+    }
+)
+
+// ************************************************************************* //

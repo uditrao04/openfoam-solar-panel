@@ -1,0 +1,18 @@
+#!/bin/bash
+#----------------------------------*-sh-*--------------------------------------
+# =========                 |                                                 |
+# \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+#  \\    /   O peration     | Version:  v2412                                 |
+#   \\  /    A nd           | Website:  www.openfoam.com                      |
+#    \\/     M anipulation  |                                                 |
+#------------------------------------------------------------------------------
+
+cd "${0%/*}" || exit 1
+
+rm -rf constant/polyMesh
+rm -rf constant/extendedFeatureEdgeMesh
+rm -f 0/cellLevel
+rm -f 0/pointLevel
+rm -f *.foam
+rm -f log.*
+rm -rf processor*

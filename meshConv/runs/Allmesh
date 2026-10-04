@@ -1,0 +1,33 @@
+#!/bin/bash
+#----------------------------------*-sh-*--------------------------------------
+# =========                 |                                                 |
+# \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+#  \    /   O peration     | Version:  v2412                                 |
+#   \  /    A nd           | Website:  www.openfoam.com                      |
+#    \/     M anipulation  |                                                 |
+#------------------------------------------------------------------------------
+
+cd "${0%/*}" || exit 1
+echo "======================================================================"
+echo "  Starting Parallel Mesh Generation for Mesh Convergence Levels 0 to 14"
+echo "======================================================================"
+for case_dir in level0 level1 level2 level3 level4 level5 level6 level7 level8 level9 level10 level11 level12 level13 level14; do
+    if [ -d "$case_dir" ]; then
+        echo ""
+        echo ">>> Meshing $case_dir..."
+        (
+            cd "$case_dir" || exit 1
+            if [ -f "./allMesh" ]; then
+                ./allMesh
+            elif [ -f "./Allmesh" ]; then
+                ./Allmesh
+            fi
+            rm -rf processor*
+            rm -f 0/cellLevel 0/pointLevel
+        )
+        echo ">>> $case_dir meshing finished."
+    fi
+done
+echo "======================================================================"
+echo "  All 15 Mesh Convergence Levels Generated Successfully!"
+echo "======================================================================"

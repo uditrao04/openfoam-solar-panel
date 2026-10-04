@@ -29,3 +29,11 @@ log.*
 *.swo
 *~
 .DS_Store
+
+solarPanel/
+
+failedMeshConv/
+
+allMesh
+allrun
+allsolve

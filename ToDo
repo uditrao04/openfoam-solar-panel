@@ -1,0 +1,43 @@
+Velocity: 65m/s // or 5m/s
+
+Turbulence: SST KOmg
+Turbulence Chars: 
+Intensity: 10%
+Length Scale: 
+
+Solar Panel Height
+Length Change - -4L (U) to 15L (U)
+3H above sp
+1.5W left and right
+
+Prism Layers: 11
+y+: 65m/s
+
+x dir: 1676.4
+y dir: 736.28
+z dir: 828.6
+
+    nearBodyBox
+    {
+        type searchableBox;
+        min (-0.9 0.0 -1.2);
+        max ( 0.9 1.2  1.2);
+    }
+
+    wakeBox
+    {
+        type searchableBox;
+        min (-3.5 0.0 -1.5);
+        max ( 0.2 1.5  1.5);
+    }
+
+nBB: 5L
+wB: 7.5L or 10L
+
+To Do L:
+LES vs DDES/IDDES
+
+NCWE: kSST (Extreme 5m/s 65m/s)
+Journo: LES, DDES, kSST (Full data)
+
+Velos: 5 10 15 25 40 50 65

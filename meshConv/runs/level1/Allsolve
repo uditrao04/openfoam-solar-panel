@@ -1,0 +1,10 @@
+#!/bin/bash
+cd "${0%/*}" || exit 1
+if [ ! -d "constant/polyMesh" ] || [ ! -f "constant/polyMesh/points" ] || [ ! -s "constant/polyMesh/points" ]; then
+    echo "  No mesh found for Level 1. Running mesh step..."
+    if [ -f "./allMesh" ]; then ./allMesh; elif [ -f "./Allmesh" ]; then ./Allmesh; fi
+else
+    echo "  Mesh already exists for Level 1. Skipping mesh step."
+fi
+echo "  Running solver for Level 1..."
+if [ -f "./allrun" ]; then ./allrun; elif [ -f "./Allrun" ]; then ./Allrun; fi
